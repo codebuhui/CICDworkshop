@@ -2,7 +2,7 @@ name: myworkflow
 on:
   push:
     branches:
-      - v*.*
+      -master
 
 
 jobs:
