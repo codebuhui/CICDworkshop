@@ -2,7 +2,7 @@ name: myworkflow
 on:
   push:
     branches:
-      -'v[]+.[]+'
+      -'v[0-9]+.[0-9]+'
 
 
 jobs:
