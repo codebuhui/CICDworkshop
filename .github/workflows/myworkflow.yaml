@@ -26,8 +26,9 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
-      - uses: actions/checkout@v2
+      
       - name: Slack Notification
+        if: ${{failure()}}
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.TEST_SUBMISSION }} 
