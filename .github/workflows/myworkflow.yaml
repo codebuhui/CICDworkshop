@@ -2,7 +2,7 @@ name: myworkflow
 on:
   push:
     branches:
-      - master
+      - 'v[0-9]+.[0-9]+'
 
 jobs:
   my_first_ci:
@@ -11,9 +11,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Build an image from Dockerfile
         run: |
           docker build -t docker.io/codebuhui/fortunes:${{ github.sha }} .
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -24,4 +26,12 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
 
+      - uses: actions/checkout@v2
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.TEST_SUBMISSION }} 
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
+          SLACK_TITLE: Scan Failed
 
