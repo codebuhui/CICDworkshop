@@ -41,6 +41,6 @@ jobs:
         if: ${{failure()}}
         with:
           slack_token: ${{ secrets.BOT_TOKEN }}
-          #channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
           file_path: './failure.txt'
           initial_comment: 'scan reportt'
