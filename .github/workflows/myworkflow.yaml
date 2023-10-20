@@ -38,6 +38,7 @@ jobs:
           SLACK_TITLE: Scan Failed
 
       - uses: MeilCli/slack-upload-file@v3
+        if: ${{failure()}}
         with:
           slack_token: ${{ secrets.BOT_TOKEN }}
           #channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
