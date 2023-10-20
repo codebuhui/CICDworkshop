@@ -21,7 +21,7 @@ jobs:
         with:
           image-ref: 'docker.io/codebuhui/fortunes:${{ github.sha }}'
           format: 'table'
-          output: 'failure.txt'
+          output: 'Failure.txt'
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
@@ -42,5 +42,5 @@ jobs:
         with:
           slack_token: ${{ secrets.BOT_TOKEN }}
           channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
-          file_path: './failure.txt'
-          initial_comment: 'scan reportt'
+          file_path: './Failure.txt'
+          initial_comment: 'codebuhui Scan Report'
