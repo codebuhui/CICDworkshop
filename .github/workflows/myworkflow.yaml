@@ -40,8 +40,8 @@ jobs:
       - uses: MeilCli/slack-upload-file@v3
         if: ${{failure()}}
         with:
-          slack_token: ${{ secrets.TOKENTEST}}
-          channel_id: ${{ secrets.ID }}
+          slack_token: ${{ secrets.BOT_TOKEN}}
+          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
           file_path: './Failure.txt'
           initial_comment: 'codebuhui Scan Report'
 
