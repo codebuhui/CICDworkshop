@@ -91,8 +91,8 @@ jobs:
               *Name:* WANG YIHAN
               *Metriculation:* A0285882L
               *Email:* <mailto:e1221694@u.nus.edu|e1221694@u.nus.edu>
-              *Repository:* <${{ secrets.REPOSITORY }}>Your Repository Name
-              *DockerHub URL:* <${{ secrets.DOCKERHUB_URL }}>DockerHub URL
+              *Repository:* <${{ secrets.REPOSITORY }}>
+              *DockerHub URL:* <${{ secrets.DOCKERHUB_URL }}>
       
 
 
