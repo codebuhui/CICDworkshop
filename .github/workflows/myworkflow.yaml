@@ -45,12 +45,6 @@ jobs:
           file_path: './Failure.txt'
           initial_comment: 'codebuhui Scan Report'
 
-      
-      - name: Install Cosign
-        uses: sigstore/cosign-installer@v3.1.1
-      - name: Check install!
-        run: cosign version
-
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -63,6 +57,10 @@ jobs:
           push: true
           tags: ${{secrets.DOCKERHUB_NAME}}/fortunes:${{ github.sha }}
 
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3.1.1
+      - name: Check install!
+        run: cosign version
 
       - name : Generate key pair
         run: |
@@ -72,15 +70,29 @@ jobs:
         run: |
               cosign sign --yes --key cosign.key docker.io/codebuhui/fortunes:${{ github.sha }}
 
-      - name: Verify the public key
-        run: | 
-              cosign verify --key cosign.pub docker.io/codebuhui/fortunes:${{ github.sha }}
       
-      - name: Download public key
-        uses: actions/upload-artifact@v1
-        with:
-          name: publickey
-          path: ${{github.workspace}}/cosign.pub
+      - name: pubkey file
+        run: |
+              git config --global user.email wangwyh78@gmail.com
+              git config --global user.name codebuhui
+              git add .
+              git reset cosign.key
+              git commit -m "update"
+              git push -u origin v1.2
 
 
+      # - name: Slack Notification
+      #   uses: rtCamp/action-slack-notify@v2
+      #   env:
+      #       SLACK_WEBHOOK: ${{ secrets.TEST_SUBMISSION }} 
+      #       SLACK_COLOR: ${{ job.status }}
+      #       SLACK_TITLE: image build and signed by codebuhui
+      #       SLACK_MESSAGE: |
+      #         *Name:* WANG YIHAN
+      #         *Metriculation:* A0285882L
+      #         *Email:* <a href="mailto:e1221694@u.nus.edu">e1221694@u.nus.edu</a>
+      #         *Repository: *<a href="${{ secrets.REPOSITORY }}">Your Repository Name</a>
+      #         *DockerHubURL: *<a href="${{ secrets.DOCKERHUB_URL }}">DockerHub URL</a>
       
+
+
