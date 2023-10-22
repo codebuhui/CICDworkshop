@@ -22,7 +22,7 @@ jobs:
           image-ref: 'docker.io/codebuhui/fortunes:${{ github.sha }}'
           format: 'table'
           output: 'Failure.txt'
-          exit-code: '0'
+          exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
@@ -37,13 +37,13 @@ jobs:
           SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
           SLACK_TITLE: Scan Failed
 
-      # - uses: MeilCli/slack-upload-file@v3
-      #   if: ${{failure()}}
-      #   with:
-      #     slack_token: ${{ secrets.TOKENTEST}}
-      #     channel_id: ${{ secrets.ID }}
-      #     file_path: './Failure.txt'
-      #     initial_comment: 'codebuhui Scan Report'
+      - uses: MeilCli/slack-upload-file@v3
+        if: ${{failure()}}
+        with:
+          slack_token: ${{ secrets.TOKENTEST}}
+          channel_id: ${{ secrets.ID }}
+          file_path: './Failure.txt'
+          initial_comment: 'codebuhui Scan Report'
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
