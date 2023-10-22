@@ -1,5 +1,5 @@
 
-docker.io/codebuhui/fortunes:caa9e32f86b21d86480ec778e6b281356f397efa (alpine 3.16.7)
+docker.io/codebuhui/fortunes:0c833b7859b24f217f3432bc89bcf6c14f845f17 (alpine 3.16.7)
 =====================================================================================
 Total: 0 (HIGH: 0, CRITICAL: 0)
 
