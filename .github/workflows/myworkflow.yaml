@@ -77,7 +77,7 @@ jobs:
               git config --global user.name codebuhui
               git add .
               git reset cosign.key
-              git commit -m "update"
+              git commit -m "add pubkey file"
               git push -u origin v1.2
 
 
