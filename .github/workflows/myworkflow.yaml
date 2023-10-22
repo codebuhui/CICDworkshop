@@ -32,7 +32,7 @@ jobs:
         if: ${{failure()}}
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_WEBHOOK: ${{ secrets.TEST_SUBMISSION }} 
+          SLACK_WEBHOOK: ${{ secrets.TEST_SUBMISSION1 }} 
           SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
           SLACK_TITLE: Scan Failed
@@ -81,18 +81,18 @@ jobs:
               git push -u origin v1.2
 
 
-      # - name: Slack Notification
-      #   uses: rtCamp/action-slack-notify@v2
-      #   env:
-      #       SLACK_WEBHOOK: ${{ secrets.TEST_SUBMISSION }} 
-      #       SLACK_COLOR: ${{ job.status }}
-      #       SLACK_TITLE: image build and signed by codebuhui
-      #       SLACK_MESSAGE: |
-      #         *Name:* WANG YIHAN
-      #         *Metriculation:* A0285882L
-      #         *Email:* <a href="mailto:e1221694@u.nus.edu">e1221694@u.nus.edu</a>
-      #         *Repository: *<a href="${{ secrets.REPOSITORY }}">Your Repository Name</a>
-      #         *DockerHubURL: *<a href="${{ secrets.DOCKERHUB_URL }}">DockerHub URL</a>
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+            SLACK_WEBHOOK: ${{ secrets.TEST_SUBMISSION1 }} 
+            SLACK_COLOR: ${{ job.status }}
+            SLACK_TITLE: image build and signed by codebuhui
+            SLACK_MESSAGE: |
+              *Name:* WANG YIHAN
+              *Metriculation:* A0285882L
+              *Email:* <a href="mailto:e1221694@u.nus.edu">e1221694@u.nus.edu</a>
+              *Repository: *<a href="${{ secrets.REPOSITORY }}">Your Repository Name</a>
+              *DockerHubURL: *<a href="${{ secrets.DOCKERHUB_URL }}">DockerHub URL</a>
       
 
 
