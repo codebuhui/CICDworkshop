@@ -32,7 +32,7 @@ jobs:
         if: ${{failure()}}
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_WEBHOOK: ${{ secrets.TEST_SUBMISSION1 }} 
+          SLACK_WEBHOOK: ${{ secrets.TEST }} 
           SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
           SLACK_TITLE: Scan Failed
@@ -84,7 +84,7 @@ jobs:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
-            SLACK_WEBHOOK: ${{ secrets.TEST_SUBMISSION1 }} 
+            SLACK_WEBHOOK: ${{ secrets.TEST }} 
             SLACK_COLOR: ${{ job.status }}
             SLACK_TITLE: image build and signed by codebuhui
             SLACK_MESSAGE: |
